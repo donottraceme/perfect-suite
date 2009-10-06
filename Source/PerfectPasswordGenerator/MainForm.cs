@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace PerfectPasswordGenerator
 {
@@ -53,22 +54,15 @@ namespace PerfectPasswordGenerator
 
 		private string GetUriContent(string uri)
 		{
-			try
-			{
-				HttpWebRequest httpRequest = (HttpWebRequest)HttpWebRequest.Create(uri);
-				HttpWebResponse httpResponse = (HttpWebResponse)httpRequest.GetResponse();
+			HttpWebRequest httpRequest = (HttpWebRequest)HttpWebRequest.Create(uri);
+			HttpWebResponse httpResponse = (HttpWebResponse)httpRequest.GetResponse();
 
-				using (Stream httpResponseStream = httpResponse.GetResponseStream())
-				{
-					using (TextReader httpResponseReader = new StreamReader(httpResponseStream))
-					{
-						return httpResponseReader.ReadToEnd();
-					}
-				}
-			}
-			catch (Exception e)
+			using (Stream httpResponseStream = httpResponse.GetResponseStream())
 			{
-				return null;
+				using (TextReader httpResponseReader = new StreamReader(httpResponseStream))
+				{
+					return httpResponseReader.ReadToEnd();
+				}
 			}
 		}
 
@@ -152,7 +146,17 @@ namespace PerfectPasswordGenerator
 
 		private bool ValidateWithDictionary(string passwordText)
 		{
-			return !this._dictionary.Contains(passwordText.ToLowerInvariant());
+			StringBuilder passwordLetters = new StringBuilder();
+
+			foreach (char symbol in passwordText.ToLowerInvariant())
+			{
+				if ((symbol >= 'a') && (symbol <= 'z'))
+				{
+					passwordLetters.Append(symbol);
+				}
+			}
+
+			return !this._dictionary.Contains(passwordLetters.ToString());
 		}
 
 		#endregion
@@ -194,60 +198,68 @@ namespace PerfectPasswordGenerator
 
 		private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
 		{
-			int passwordLength = (int)this._numberPasswordLength.Value;
-			int passwordNumber = (int)this._numberPasswordNumber.Value;
-			int totalTries = 0;
-			int successfulTries = 0;
-			bool validateWithGoogle = (bool)this._checkValidatorGoogle.Value;
-			bool validateWithYahoo = (bool)this._checkValidatorYahoo.Value;
-			bool validateWithBing = (bool)this._checkValidatorBing.Value;
-			bool validateWithDictionary = (bool)this._checkValidatorDictionaries.Value;
-
-			this._passwords = new StringBuilder();
-
-			if (validateWithDictionary)
+			try
 			{
-				PrepareDictionaries();
+
+				int passwordLength = (int)this._numberPasswordLength.Value;
+				int passwordNumber = (int)this._numberPasswordNumber.Value;
+				int totalTries = 0;
+				int successfulTries = 0;
+				bool validateWithGoogle = (bool)this._checkValidatorGoogle.Value;
+				bool validateWithYahoo = (bool)this._checkValidatorYahoo.Value;
+				bool validateWithBing = (bool)this._checkValidatorBing.Value;
+				bool validateWithDictionary = (bool)this._checkValidatorDictionaries.Value;
+
+				this._passwords = new StringBuilder();
+
+				if (validateWithDictionary)
+				{
+					PrepareDictionaries();
+				}
+
+				while (
+					(successfulTries < passwordNumber) &&
+					(totalTries < 2 * passwordNumber))
+				{
+					totalTries++;
+
+					string passwordText = this._passwordGenerator.Generate(passwordLength);
+					bool isPasswordValid = true;
+
+					if (isPasswordValid && validateWithGoogle)
+					{
+						this._backgroundWorker.ReportProgress(successfulTries | 0x00000, passwordText);
+						isPasswordValid = ValidateWithGoogle(passwordText);
+					}
+
+					if (isPasswordValid && validateWithYahoo)
+					{
+						this._backgroundWorker.ReportProgress(successfulTries | 0x10000, passwordText);
+						isPasswordValid = ValidateWithYahoo(passwordText);
+					}
+
+					if (isPasswordValid && validateWithBing)
+					{
+						this._backgroundWorker.ReportProgress(successfulTries | 0x20000, passwordText);
+						isPasswordValid = ValidateWithBing(passwordText);
+					}
+
+					if (isPasswordValid && validateWithDictionary)
+					{
+						this._backgroundWorker.ReportProgress(successfulTries | 0x30000, passwordText);
+						isPasswordValid = ValidateWithDictionary(passwordText);
+					}
+
+					if (isPasswordValid)
+					{
+						this._passwords.AppendLine(passwordText);
+						successfulTries++;
+					}
+				}
 			}
-
-			while (
-				(successfulTries < passwordNumber) &&
-				(totalTries < 2 * passwordNumber))
+			catch (Exception exception)
 			{
-				totalTries++;
-
-				string passwordText = this._passwordGenerator.Generate(passwordLength);
-				bool isPasswordValid = true;
-
-				if (isPasswordValid && validateWithGoogle)
-				{
-					this._backgroundWorker.ReportProgress(successfulTries | 0x00000, passwordText);
-					isPasswordValid = ValidateWithGoogle(passwordText);
-				}
-
-				if (isPasswordValid && validateWithYahoo)
-				{
-					this._backgroundWorker.ReportProgress(successfulTries | 0x10000, passwordText);
-					isPasswordValid = ValidateWithYahoo(passwordText);
-				}
-
-				if (isPasswordValid && validateWithBing)
-				{
-					this._backgroundWorker.ReportProgress(successfulTries | 0x20000, passwordText);
-					isPasswordValid = ValidateWithBing(passwordText);
-				}
-
-				if (isPasswordValid && validateWithDictionary)
-				{
-					this._backgroundWorker.ReportProgress(successfulTries | 0x30000, passwordText);
-					isPasswordValid = ValidateWithDictionary(passwordText);
-				}
-
-				if (isPasswordValid)
-				{
-					this._passwords.AppendLine(passwordText);
-					successfulTries++;
-				}
+				this._backgroundWorker.ReportProgress(0xF0000, exception.Message);
 			}
 		}
 
@@ -284,10 +296,10 @@ namespace PerfectPasswordGenerator
 							e.UserState,
 							this._dictionary.Count);
 					break;
+				case 15:
+					this._labelStatus.Text = (string)e.UserState;
+					break;
 			}
-
-			base.Refresh();
-			Application.DoEvents();
 		}
 
 		private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
