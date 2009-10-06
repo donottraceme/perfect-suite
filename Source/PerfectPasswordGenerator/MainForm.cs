@@ -5,6 +5,8 @@ using System.Text;
 using System;
 using System.Text.RegularExpressions;
 using System.ComponentModel;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace PerfectPasswordGenerator
 {
@@ -14,6 +16,7 @@ namespace PerfectPasswordGenerator
 
 		private PasswordGenerator _passwordGenerator;
 		private StringBuilder _passwords;
+		private HashSet<string> _dictionary;
 
 		#endregion
 
@@ -63,54 +66,93 @@ namespace PerfectPasswordGenerator
 					}
 				}
 			}
-			catch (Exception exception)
+			catch (Exception e)
 			{
-				return string.Empty;
+				return null;
 			}
+		}
+
+		private bool ValidateWithSearchEngine(
+			string urlTemplate,
+			string zeroResultPattern,
+			string nonZeroResultPattern,
+			string passwordText)
+		{
+			string content =
+				GetUriContent(
+					string.Format(
+						urlTemplate,
+						Uri.EscapeDataString(passwordText)));
+
+			Match zeroMatch = Regex.Match(content, zeroResultPattern);
+
+			if (zeroMatch.Success)
+			{
+				return true;
+			}
+
+			Match nonZeroMatch = Regex.Match(content, nonZeroResultPattern);
+
+			if (nonZeroMatch.Success)
+			{
+				int result = int.Parse(nonZeroMatch.Groups[1].Value);
+
+				return result < 100;
+			}
+
+			return false;
 		}
 
 		private bool ValidateWithGoogle(string passwordText)
 		{
-			string content =
-				GetUriContent(
-					string.Format(
-						"http://www.google.com/search?hl=en&q={0}",
-						Uri.EscapeDataString(passwordText)));
-
-			return content.IndexOf("did not match any documents") != -1;
+			return
+				ValidateWithSearchEngine(
+					"http://www.google.com/search?hl=en&q=%22{0}%22",
+					"did not match any documents",
+					@"\<p\>&nbsp;Results \<b\>\d+</b> - <b>\d+</b> of <b>(\d+)</b> for",
+					passwordText);
 		}
 
 		private bool ValidateWithYahoo(string passwordText)
 		{
-			string content =
-				GetUriContent(
-					string.Format(
-						"http://search.yahoo.com/search?p={0}",
-						Uri.EscapeDataString(passwordText)));
-
-			return content.IndexOf("We did not find results for") != -1;
+			return
+				ValidateWithSearchEngine(
+					"http://search.yahoo.com/search?p=%22{0}%22",
+					"We did not find results for",
+					@"\<span class=""count""\>\<strong id=""resultCount"">(\d+)\</strong\> results for\</span\>",
+					passwordText);
 		}
 
 		private bool ValidateWithBing(string passwordText)
 		{
-			string content =
-				GetUriContent(
-					string.Format(
-						"http://search.yahoo.com/search?p={0}",
-						Uri.EscapeDataString(passwordText)));
-
-			return content.IndexOf("We did not find any results for") != -1;
+			return
+				ValidateWithSearchEngine(
+					"http://www.bing.com/search?q=%22{0}%22",
+					"We did not find any results for",
+					@"\<span class=""sb_count"" id=""count""\>\d+-\d+ of (\d+) results\</span\>",
+					passwordText);
 		}
 
-		private bool ValidateWithWikipedia(string passwordText)
+		private void PrepareDictionaries()
 		{
-			string content =
-				GetUriContent(
-					string.Format(
-						"http://en.wikipedia.org/wiki/Special:Search?search={0}",
-						Uri.EscapeDataString(passwordText)));
+			this._dictionary = new HashSet<string>();
 
-			return content.IndexOf("There were no results matching the query") != -1;
+			foreach (string dictionaryPath in
+				Directory.GetFiles(
+					Application.StartupPath + "\\Dictionaries\\",
+					"*.txt",
+					SearchOption.AllDirectories))
+			{
+				foreach (string dictionaryWord in File.ReadAllLines(dictionaryPath))
+				{
+					this._dictionary.Add(dictionaryWord.ToLowerInvariant());
+				}
+			}
+		}
+
+		private bool ValidateWithDictionary(string passwordText)
+		{
+			return !this._dictionary.Contains(passwordText.ToLowerInvariant());
 		}
 
 		#endregion
@@ -140,8 +182,10 @@ namespace PerfectPasswordGenerator
 
 		private void ButtonGenerate_Clicked(object sender, HtmlBehaviorEventArgs e)
 		{
-			this._backgroundWorker.RunWorkerAsync();
+			this._groupGeneratorOptions.IsEnabled = false;
+			this._groupValidatorOptions.IsEnabled = false;
 			this._buttonGenerate.IsEnabled = false;
+			this._backgroundWorker.RunWorkerAsync();
 		}
 
 		#endregion
@@ -157,9 +201,14 @@ namespace PerfectPasswordGenerator
 			bool validateWithGoogle = (bool)this._checkValidatorGoogle.Value;
 			bool validateWithYahoo = (bool)this._checkValidatorYahoo.Value;
 			bool validateWithBing = (bool)this._checkValidatorBing.Value;
-			bool validateWithWikipedia = (bool)this._checkValidatorWikipedia.Value;
+			bool validateWithDictionary = (bool)this._checkValidatorDictionaries.Value;
 
 			this._passwords = new StringBuilder();
+
+			if (validateWithDictionary)
+			{
+				PrepareDictionaries();
+			}
 
 			while (
 				(successfulTries < passwordNumber) &&
@@ -188,10 +237,10 @@ namespace PerfectPasswordGenerator
 					isPasswordValid = ValidateWithBing(passwordText);
 				}
 
-				if (isPasswordValid && validateWithWikipedia)
+				if (isPasswordValid && validateWithDictionary)
 				{
 					this._backgroundWorker.ReportProgress(successfulTries | 0x30000, passwordText);
-					isPasswordValid = ValidateWithWikipedia(passwordText);
+					isPasswordValid = ValidateWithDictionary(passwordText);
 				}
 
 				if (isPasswordValid)
@@ -209,37 +258,43 @@ namespace PerfectPasswordGenerator
 				case 0:
 					this._labelStatus.Text =
 						string.Format(
-							"{0}: Validating '{1}' with Google.",
-							e.ProgressPercentage & 0xFFFF,
+							"Password #{0}: Validating '{1}' with Google.",
+							(e.ProgressPercentage & 0xFFFF) + 1,
 							e.UserState);
 					break;
 				case 1:
 					this._labelStatus.Text =
 						string.Format(
-							"{0}: Validating '{1}' with Yahoo!",
-							e.ProgressPercentage & 0xFFFF,
+							"Password #{0}: Validating '{1}' with Yahoo!.",
+							(e.ProgressPercentage & 0xFFFF) + 1,
 							e.UserState);
 					break;
 				case 2:
 					this._labelStatus.Text =
 						string.Format(
-							"{0}: Validating '{1}' with Bing.",
-							e.ProgressPercentage & 0xFFFF,
+							"Password #{0}: Validating '{1}' with Bing.",
+							(e.ProgressPercentage & 0xFFFF) + 1,
 							e.UserState);
 					break;
 				case 3:
 					this._labelStatus.Text =
 						string.Format(
-							"{0}: Validating '{1}' with Wikipedia.",
-							e.ProgressPercentage & 0xFFFF,
-							e.UserState);
+							"Password #{0}: Validating '{1}' with dictionary ({2} words).",
+							(e.ProgressPercentage & 0xFFFF) + 1,
+							e.UserState,
+							this._dictionary.Count);
 					break;
 			}
+
+			base.Refresh();
+			Application.DoEvents();
 		}
 
 		private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
 		{
 			this._textPasswords.Value = this._passwords.ToString();
+			this._groupGeneratorOptions.IsEnabled = true;
+			this._groupValidatorOptions.IsEnabled = true;
 			this._buttonGenerate.IsEnabled = true;
 			this._labelStatus.Text = string.Empty;
 		}

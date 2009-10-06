@@ -30,6 +30,7 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+			this._backgroundWorker = new System.ComponentModel.BackgroundWorker();
 			this._groupGeneratorOptions = new Nabu.Forms.Html.HtmlComponent(this.components);
 			this._checkGeneratorLowerCaseLetters = new Nabu.Forms.Html.HtmlComponent(this.components);
 			this._checkGeneratorUpperCaseLetters = new Nabu.Forms.Html.HtmlComponent(this.components);
@@ -44,14 +45,20 @@
 			this._checkValidatorGoogle = new Nabu.Forms.Html.HtmlComponent(this.components);
 			this._checkValidatorYahoo = new Nabu.Forms.Html.HtmlComponent(this.components);
 			this._checkValidatorBing = new Nabu.Forms.Html.HtmlComponent(this.components);
-			this._checkValidatorWikipedia = new Nabu.Forms.Html.HtmlComponent(this.components);
+			this._checkValidatorDictionaries = new Nabu.Forms.Html.HtmlComponent(this.components);
 			this._groupPasswords = new Nabu.Forms.Html.HtmlComponent(this.components);
 			this._textPasswords = new Nabu.Forms.Html.HtmlComponent(this.components);
 			this._labelPasswordRating = new Nabu.Forms.Html.HtmlComponent(this.components);
 			this._buttonGenerate = new Nabu.Forms.Html.HtmlComponent(this.components);
 			this._labelStatus = new Nabu.Forms.Html.HtmlComponent(this.components);
-			this._backgroundWorker = new System.ComponentModel.BackgroundWorker();
 			this.SuspendLayout();
+			// 
+			// _backgroundWorker
+			// 
+			this._backgroundWorker.WorkerReportsProgress = true;
+			this._backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker_DoWork);
+			this._backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorker_RunWorkerCompleted);
+			this._backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BackgroundWorker_ProgressChanged);
 			// 
 			// _groupGeneratorOptions
 			// 
@@ -131,10 +138,10 @@
 			this._checkValidatorBing.BindingID = "_checkValidatorBing";
 			this._checkValidatorBing.HtmlForm = this;
 			// 
-			// _checkValidatorWikipedia
+			// _checkValidatorDictionaries
 			// 
-			this._checkValidatorWikipedia.BindingID = "_checkValidatorWikipedia";
-			this._checkValidatorWikipedia.HtmlForm = this;
+			this._checkValidatorDictionaries.BindingID = "_checkValidatorDictionaries";
+			this._checkValidatorDictionaries.HtmlForm = this;
 			// 
 			// _groupPasswords
 			// 
@@ -162,13 +169,6 @@
 			this._labelStatus.BindingID = "_labelStatus";
 			this._labelStatus.HtmlForm = this;
 			// 
-			// _backgroundWorker
-			// 
-			this._backgroundWorker.WorkerReportsProgress = true;
-			this._backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker_DoWork);
-			this._backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorker_RunWorkerCompleted);
-			this._backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BackgroundWorker_ProgressChanged);
-			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -186,6 +186,7 @@
 
 		#endregion
 
+		private System.ComponentModel.BackgroundWorker _backgroundWorker;
 		private Nabu.Forms.Html.HtmlComponent _groupGeneratorOptions;
 		private Nabu.Forms.Html.HtmlComponent _checkGeneratorLowerCaseLetters;
 		private Nabu.Forms.Html.HtmlComponent _checkGeneratorUpperCaseLetters;
@@ -200,13 +201,12 @@
 		private Nabu.Forms.Html.HtmlComponent _checkValidatorGoogle;
 		private Nabu.Forms.Html.HtmlComponent _checkValidatorYahoo;
 		private Nabu.Forms.Html.HtmlComponent _checkValidatorBing;
-		private Nabu.Forms.Html.HtmlComponent _checkValidatorWikipedia;
+		private Nabu.Forms.Html.HtmlComponent _checkValidatorDictionaries;
 		private Nabu.Forms.Html.HtmlComponent _groupPasswords;
 		private Nabu.Forms.Html.HtmlComponent _textPasswords;
 		private Nabu.Forms.Html.HtmlComponent _labelPasswordRating;
 		private Nabu.Forms.Html.HtmlComponent _buttonGenerate;
 		private Nabu.Forms.Html.HtmlComponent _labelStatus;
-		private System.ComponentModel.BackgroundWorker _backgroundWorker;
 
 
 
