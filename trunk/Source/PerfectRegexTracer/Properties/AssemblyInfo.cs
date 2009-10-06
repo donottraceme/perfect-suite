@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PerfectPasswordGenerator")]
+[assembly: AssemblyTitle("PerfectRegexTracer")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("TrifleSoft")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("4cf7151d-57db-49c3-b449-902594173456")]
+[assembly: Guid("8f759292-ffee-4d68-b4be-7d602f35e105")]
 
 // Version information for an assembly consists of the following four values:
 //
