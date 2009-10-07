@@ -175,6 +175,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(622, 435);
 			this.Html = resources.GetString("$this.Html");
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Location = new System.Drawing.Point(0, 0);
 			this.MinimumSize = new System.Drawing.Size(640, 480);
 			this.Name = "MainForm";
