@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,19 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Nabu.Forms, Version=2.0.0.414, Culture=neutral, PublicKeyToken=4fa139061a5c810a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Nabu\trunk\Source\Library\Nabu.Forms\obj\Debug\Nabu.Forms.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainForm.cs">
@@ -79,6 +73,44 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="PerfectRegexTracer.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Nabu\trunk\Source\Library\Nabu.Forms.Html\Nabu.Forms.Html.FF.csproj">
+      <Project>{97051D46-91D7-492F-9A45-FEB28CF2DAFF}</Project>
+      <Name>Nabu.Forms.Html.FF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Nabu\trunk\Source\Library\Nabu.Forms\Nabu.Forms.FF.csproj">
+      <Project>{BF8D69BA-5B66-4DED-B609-B89929ECC3DA}</Project>
+      <Name>Nabu.Forms.FF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Nabu\trunk\Source\Library\Nabu.IO\Nabu.IO.FF.csproj">
+      <Project>{68509254-81E9-4C87-A804-D5EDAAA6AD57}</Project>
+      <Name>Nabu.IO.FF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Nabu\trunk\Source\Library\Nabu.Net\Nabu.Net.FF.csproj">
+      <Project>{51DBC48A-CC34-4D76-9164-A3744309FDBF}</Project>
+      <Name>Nabu.Net.FF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Nabu\trunk\Source\Library\Nabu.Ole\Nabu.Ole.FF.csproj">
+      <Project>{1A43E783-16A3-4010-A407-033C59F17846}</Project>
+      <Name>Nabu.Ole.FF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Nabu\trunk\Source\Library\Nabu.Reflection\Nabu.Reflection.FF.csproj">
+      <Project>{D5FCFBD2-85BF-42AF-B354-3DD598455A80}</Project>
+      <Name>Nabu.Reflection.FF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Nabu\trunk\Source\Library\Nabu.Text\Nabu.Text.FF.csproj">
+      <Project>{93E05B6D-449D-475A-8474-C5E1757A8221}</Project>
+      <Name>Nabu.Text.FF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Nabu\trunk\Source\Library\Nabu.Threading\Nabu.Threading.FF.csproj">
+      <Project>{5DE6B94B-60C9-49E6-AC4C-566EF3966A60}</Project>
+      <Name>Nabu.Threading.FF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Nabu\trunk\Source\Library\Nabu\Nabu.FF.csproj">
+      <Project>{F2AD887D-315A-41DB-8CD1-20B20C82E72A}</Project>
+      <Name>Nabu.FF</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

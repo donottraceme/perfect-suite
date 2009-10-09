@@ -5,20 +5,19 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{E8210564-9F16-4E5A-B6C6-1F947F3CA1E0}</ProjectGuid>
+    <ProjectGuid>{B31A10B3-DD18-4F04-AC33-D3037B425EF0}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PerfectPasswordGenerator</RootNamespace>
-    <AssemblyName>PerfectPasswordGenerator</AssemblyName>
+    <RootNamespace>PerfectNetworkTracer</RootNamespace>
+    <AssemblyName>PerfectNetworkTracer</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <ApplicationIcon>PerfectPasswordGenerator.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Executables\PerfectPasswordGenerator\</OutputPath>
+    <OutputPath>..\..\Executables\PerfectNetworkTracer\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -27,7 +26,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\Executables\PerfectPasswordGenerator\</OutputPath>
+    <OutputPath>..\..\Executables\PerfectNetworkTracer\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -38,10 +37,9 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainForm.cs">
@@ -50,7 +48,6 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PasswordGenerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">
@@ -64,16 +61,30 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Dictionaries\EnglishWords.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="PerfectPasswordGenerator.ico" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Nabu\trunk\Source\Library\Nabu.Collections\Nabu.Collections.FF.csproj">
+      <Project>{80A8381B-11BE-409B-BBC9-12B8E88A3884}</Project>
+      <Name>Nabu.Collections.FF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Nabu\trunk\Source\Library\Nabu.Diagnostics\Nabu.Diagnostics.FF.csproj">
+      <Project>{3F7D1EE0-D7E5-40E2-99F1-CBCCAFFCC6DC}</Project>
+      <Name>Nabu.Diagnostics.FF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Nabu\trunk\Source\Library\Nabu.Drawing\Nabu.Drawing.FF.csproj">
+      <Project>{F9F602EE-83BC-42E3-A9EF-746BC550B928}</Project>
+      <Name>Nabu.Drawing.FF</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\Nabu\trunk\Source\Library\Nabu.Forms.Html\Nabu.Forms.Html.FF.csproj">
       <Project>{97051D46-91D7-492F-9A45-FEB28CF2DAFF}</Project>
       <Name>Nabu.Forms.Html.FF</Name>
