@@ -219,7 +219,7 @@
 				&lt;/widget&gt;
 			&lt;/div&gt;
 		&lt;/div&gt;
-		&lt;div .statusbar .h-spring id='_labelStatus'&gt;&lt;/div&gt;
+		&lt;div .status-bar .h-spring id='_labelStatus'&gt;&lt;/div&gt;
 	&lt;/body&gt;
 &lt;/html&gt;</value>
   </data>
@@ -6284,60 +6284,60 @@
 </value>
   </data>
   <metadata name="_checkGeneratorLowerCaseLetters.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>731, 189</value>
-  </metadata>
-  <metadata name="_checkGeneratorUpperCaseLetters.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 232</value>
   </metadata>
+  <metadata name="_checkGeneratorUpperCaseLetters.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>302, 232</value>
+  </metadata>
   <metadata name="_checkGeneratorDigits.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>303, 232</value>
+    <value>588, 232</value>
   </metadata>
   <metadata name="_checkGeneratorPunctuation.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>508, 232</value>
-  </metadata>
-  <metadata name="_checkGeneratorPronounceable.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>756, 232</value>
-  </metadata>
-  <metadata name="_checkGeneratorUnambiguous.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 275</value>
   </metadata>
+  <metadata name="_checkGeneratorPronounceable.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>265, 275</value>
+  </metadata>
+  <metadata name="_checkGeneratorUnambiguous.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>533, 275</value>
+  </metadata>
   <metadata name="_checkGeneratorMobileFriendly.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>279, 275</value>
-  </metadata>
-  <metadata name="_numberPasswordLength.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>546, 275</value>
-  </metadata>
-  <metadata name="_numberPasswordNumber.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>770, 275</value>
-  </metadata>
-  <metadata name="_groupValidatorOptions.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 318</value>
   </metadata>
-  <metadata name="_checkValidatorGoogle.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>233, 318</value>
+  <metadata name="_numberPasswordLength.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>284, 318</value>
   </metadata>
-  <metadata name="_checkValidatorYahoo.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>442, 318</value>
+  <metadata name="_numberPasswordNumber.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>508, 318</value>
   </metadata>
-  <metadata name="_checkValidatorBing.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>644, 318</value>
-  </metadata>
-  <metadata name="_checkValidatorDictionaries.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>834, 318</value>
-  </metadata>
-  <metadata name="_groupPasswords.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="_groupValidatorOptions.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 361</value>
   </metadata>
+  <metadata name="_checkValidatorGoogle.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>233, 361</value>
+  </metadata>
+  <metadata name="_checkValidatorYahoo.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>442, 361</value>
+  </metadata>
+  <metadata name="_checkValidatorBing.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>644, 361</value>
+  </metadata>
+  <metadata name="_checkValidatorDictionaries.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 404</value>
+  </metadata>
+  <metadata name="_groupPasswords.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>256, 404</value>
+  </metadata>
   <metadata name="_textPasswords.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>188, 361</value>
+    <value>427, 404</value>
   </metadata>
   <metadata name="_labelPasswordRating.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>343, 361</value>
+    <value>582, 404</value>
   </metadata>
   <metadata name="_buttonGenerate.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>543, 361</value>
+    <value>782, 404</value>
   </metadata>
   <metadata name="_labelStatus.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>710, 361</value>
+    <value>31, 447</value>
   </metadata>
 </root>

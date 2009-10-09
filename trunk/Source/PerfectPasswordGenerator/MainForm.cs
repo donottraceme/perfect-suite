@@ -1,13 +1,13 @@
-﻿using System.Net;
-using Nabu.Forms.Html;
-using System.IO;
-using System.Text;
-using System;
-using System.Text.RegularExpressions;
-using System.ComponentModel;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Net;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using System.Threading;
+
+using Nabu.Forms.Html;
 
 namespace PerfectPasswordGenerator
 {

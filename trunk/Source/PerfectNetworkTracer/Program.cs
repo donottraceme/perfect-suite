@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 using Nabu.Forms.Html;
 
-namespace PerfectPasswordGenerator
+namespace PerfectNetworkTracer
 {
 	public static class Program
 	{
