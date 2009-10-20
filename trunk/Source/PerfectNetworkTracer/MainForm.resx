@@ -121,89 +121,98 @@
     <value>17, 17</value>
   </metadata>
   <data name="$this.Html" xml:space="preserve">
-    <value>&lt;html native-style='true'&gt;
+    <value>&lt;html native-controls='true'&gt;
 	&lt;head&gt;
-		&lt;include src="const:layout-helper.css" /&gt;
-		&lt;include src="const:native-style.css" /&gt;
+		&lt;include src="const:basic-layout.css" /&gt;
+		&lt;include src="const:native-controls.css" /&gt;
 		&lt;style&gt;
 			div.tab
 			{
 				height: 100%%;
+			}
+			div.tab-panel
+			{
+				font-size: smaller;
 			}
 		&lt;/style&gt;
 	&lt;/head&gt;
 	&lt;body&gt;
 		&lt;div .tab&gt;
 			&lt;div .tab-strip&gt;
-				&lt;div .tab-header tabid='main' tabheaderid='interfaces' selected='true'&gt;Interfaces&lt;/div&gt;
-				&lt;div .tab-header tabid='main' tabheaderid='clients'&gt;Clients&lt;/div&gt;
-				&lt;div .tab-header tabid='main' tabheaderid='servers'&gt;Servers&lt;/div&gt;
-				&lt;div .tab-header tabid='main' tabheaderid='proxies'&gt;Proxies&lt;/div&gt;
+				&lt;div .tab-header tab-id='main' tab-header-id='interfaces' selected='true'&gt;Interfaces&lt;/div&gt;
+				&lt;div .tab-header tab-id='main' tab-header-id='clients'&gt;Clients&lt;/div&gt;
+				&lt;div .tab-header tab-id='main' tab-header-id='servers'&gt;Servers&lt;/div&gt;
+				&lt;div .tab-header tab-id='main' tab-header-id='proxies'&gt;Proxies&lt;/div&gt;
+				&lt;div .h-spring&gt;&lt;/div&gt;
 			&lt;/div&gt;
-			&lt;div .tab-panel tabid='main' tabpanelid='interfaces'&gt;
+			&lt;div .tab-panel tab-id='main' tab-panel-id='interfaces'&gt;
 				&lt;div .tab-strip&gt;
-					&lt;div .tab-header tabid='interfaces' tabheaderid='information' selected='true'&gt;Information&lt;/div&gt;
-					&lt;div .tab-header tabid='interfaces' tabheaderid='diagnostics'&gt;Diagnostics&lt;/div&gt;
+					&lt;div .tab-header tab-id='interfaces' tab-header-id='information' selected='true'&gt;Information&lt;/div&gt;
+					&lt;div .tab-header tab-id='interfaces' tab-header-id='diagnostics'&gt;Diagnostics&lt;/div&gt;
+					&lt;div .h-spring&gt;&lt;/div&gt;
 				&lt;/div&gt;
-				&lt;div .tab-panel tabid='interfaces' tabpanelid='information' id='_divInterfacesInformation'&gt;
+				&lt;div .tab-panel tab-id='interfaces' tab-panel-id='information' id='_divInterfacesInformation'&gt;
 				&lt;/div&gt;
-				&lt;div .tab-panel tabid='interfaces' tabpanelid='diagnostics'&gt;
+				&lt;div .tab-panel tab-id='interfaces' tab-panel-id='diagnostics'&gt;
 					Diagnostics
 				&lt;/div&gt;
 			&lt;/div&gt;
-			&lt;div .tab-panel tabid='main' tabpanelid='clients'&gt;
+			&lt;div .tab-panel tab-id='main' tab-panel-id='clients'&gt;
 				&lt;div .tab-strip&gt;
-					&lt;div .tab-header tabid='clients' tabheaderid='raw' selected='true'&gt;Raw&lt;/div&gt;
-					&lt;div .tab-header tabid='clients' tabheaderid='dns'&gt;DNS&lt;/div&gt;
-					&lt;div .tab-header tabid='clients' tabheaderid='ntp'&gt;NTP&lt;/div&gt;
-					&lt;div .tab-header tabid='clients' tabheaderid='syslog'&gt;SysLog&lt;/div&gt;
-					&lt;div .tab-header tabid='clients' tabheaderid='smtp'&gt;SMTP&lt;/div&gt;
-					&lt;div .tab-header tabid='clients' tabheaderid='pop3'&gt;POP3&lt;/div&gt;
+					&lt;div .tab-header tab-id='clients' tab-header-id='raw' selected='true'&gt;Raw&lt;/div&gt;
+					&lt;div .tab-header tab-id='clients' tab-header-id='dns'&gt;DNS&lt;/div&gt;
+					&lt;div .tab-header tab-id='clients' tab-header-id='ntp'&gt;NTP&lt;/div&gt;
+					&lt;div .tab-header tab-id='clients' tab-header-id='syslog'&gt;SysLog&lt;/div&gt;
+					&lt;div .tab-header tab-id='clients' tab-header-id='smtp'&gt;SMTP&lt;/div&gt;
+					&lt;div .tab-header tab-id='clients' tab-header-id='pop3'&gt;POP3&lt;/div&gt;
+					&lt;div .h-spring&gt;&lt;/div&gt;
 				&lt;/div&gt;
-				&lt;div .tab-panel tabid='clients' tabpanelid='raw'&gt;
+				&lt;div .tab-panel tab-id='clients' tab-panel-id='raw'&gt;
 					Raw
 				&lt;/div&gt;
-				&lt;div .tab-panel tabid='clients' tabpanelid='dns'&gt;
+				&lt;div .tab-panel tab-id='clients' tab-panel-id='dns'&gt;
 					DNS
 				&lt;/div&gt;
-				&lt;div .tab-panel tabid='clients' tabpanelid='ntp'&gt;
+				&lt;div .tab-panel tab-id='clients' tab-panel-id='ntp'&gt;
 					NTP
 				&lt;/div&gt;
-				&lt;div .tab-panel tabid='clients' tabpanelid='syslog'&gt;
+				&lt;div .tab-panel tab-id='clients' tab-panel-id='syslog'&gt;
 					SysLog
 				&lt;/div&gt;
-				&lt;div .tab-panel tabid='clients' tabpanelid='smtp'&gt;
+				&lt;div .tab-panel tab-id='clients' tab-panel-id='smtp'&gt;
 					SMTP
 				&lt;/div&gt;
-				&lt;div .tab-panel tabid='clients' tabpanelid='pop3'&gt;
+				&lt;div .tab-panel tab-id='clients' tab-panel-id='pop3'&gt;
 					POP3
 				&lt;/div&gt;
 			&lt;/div&gt;
-			&lt;div .tab-panel tabid='main' tabpanelid='servers'&gt;
+			&lt;div .tab-panel tab-id='main' tab-panel-id='servers'&gt;
 				&lt;div .tab-strip&gt;
-					&lt;div .tab-header tabid='servers' tabheaderid='raw' selected='true'&gt;Raw&lt;/div&gt;
-					&lt;div .tab-header tabid='servers' tabheaderid='syslog'&gt;SysLog&lt;/div&gt;
-					&lt;div .tab-header tabid='servers' tabheaderid='smtp'&gt;SMTP&lt;/div&gt;
-					&lt;div .tab-header tabid='servers' tabheaderid='pop3'&gt;POP3&lt;/div&gt;
+					&lt;div .tab-header tab-id='servers' tab-header-id='raw' selected='true'&gt;Raw&lt;/div&gt;
+					&lt;div .tab-header tab-id='servers' tab-header-id='syslog'&gt;SysLog&lt;/div&gt;
+					&lt;div .tab-header tab-id='servers' tab-header-id='smtp'&gt;SMTP&lt;/div&gt;
+					&lt;div .tab-header tab-id='servers' tab-header-id='pop3'&gt;POP3&lt;/div&gt;
+					&lt;div .h-spring&gt;&lt;/div&gt;
 				&lt;/div&gt;
-				&lt;div .tab-panel tabid='servers' tabpanelid='raw'&gt;
+				&lt;div .tab-panel tab-id='servers' tab-panel-id='raw'&gt;
 					Raw
 				&lt;/div&gt;
-				&lt;div .tab-panel tabid='servers' tabpanelid='syslog'&gt;
+				&lt;div .tab-panel tab-id='servers' tab-panel-id='syslog'&gt;
 					SysLog
 				&lt;/div&gt;
-				&lt;div .tab-panel tabid='servers' tabpanelid='smtp'&gt;
+				&lt;div .tab-panel tab-id='servers' tab-panel-id='smtp'&gt;
 					SMTP
 				&lt;/div&gt;
-				&lt;div .tab-panel tabid='servers' tabpanelid='pop3'&gt;
+				&lt;div .tab-panel tab-id='servers' tab-panel-id='pop3'&gt;
 					POP3
 				&lt;/div&gt;
 			&lt;/div&gt;
-			&lt;div .tab-panel tabid='main' tabpanelid='proxies'&gt;
+			&lt;div .tab-panel tab-id='main' tab-panel-id='proxies'&gt;
 				&lt;div .tab-strip&gt;
-					&lt;div .tab-header tabid='proxies' tabheaderid='raw' selected='true'&gt;Raw&lt;/div&gt;
+					&lt;div .tab-header tab-id='proxies' tab-header-id='raw' selected='true'&gt;Raw&lt;/div&gt;
+					&lt;div .h-spring&gt;&lt;/div&gt;
 				&lt;/div&gt;
-				&lt;div .tab-panel tabid='proxies' tabpanelid='raw'&gt;
+				&lt;div .tab-panel tab-id='proxies' tab-panel-id='raw'&gt;
 					Raw
 				&lt;/div&gt;
 			&lt;/div&gt;
