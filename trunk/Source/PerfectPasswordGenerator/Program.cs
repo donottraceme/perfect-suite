@@ -10,12 +10,9 @@ namespace PerfectPasswordGenerator
 		[STAThread]
 		public static void Main()
 		{
-			using (HtmlGuiThread htmlGuiThread = new HtmlGuiThread())
-			{
-				Application.EnableVisualStyles();
-				Application.SetCompatibleTextRenderingDefault(false);
-				Application.Run(new MainForm());
-			}
+			Application.EnableVisualStyles();
+			Application.SetCompatibleTextRenderingDefault(false);
+			Application.Run(new MainForm());
 		}
 	}
 }
